@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import PrelineScript from "@/components/preline/PrelineScript";
 import Hero from "@/components/Hero";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Header />
         <Hero />
         {children}
+        <Footer />
       </body>
       <PrelineScript />
     </html>
