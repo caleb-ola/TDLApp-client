@@ -6,7 +6,7 @@ import PrelineScript from "@/components/preline/PrelineScript";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/hooks/useAuth";
-import ProtectedRoute from "@/components/routeGuard/protectedRoute";
+import ProtectedRoute from "@/components/route-guards/protectedRoute";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +23,9 @@ export default function RootLayout({
   return (
     // <ProtectedRoute>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ProtectedRoute>{children}</ProtectedRoute>
+      </body>
       <PrelineScript />
     </html>
     // </ProtectedRoute>

@@ -3,7 +3,7 @@ import LoadingBlueButton from "@/components/buttons/loadingBlueButton";
 import PasswordInput from "@/components/forms/passwordInput";
 import TextInput from "@/components/forms/textInput";
 import { useSignupUser } from "@/hooks/useAuthRequest";
-import { toastErrorFn, toastSuccessFn } from "@/lib/utils";
+import { toastErrorFn, toastSuccessFn } from "@/utils/toast.utils";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -21,11 +21,11 @@ const Signup = () => {
   } = useSignupUser();
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    // console.log(data);
     mutate(data);
   };
 
-  console.log({ signupRes, error, isError });
+  // console.log({ signupRes, error, isError });
 
   if (signupRes) {
     toastSuccessFn(`${signupRes?.data?.data?.message}`, {

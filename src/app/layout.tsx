@@ -1,5 +1,6 @@
 "use client";
 import { AuthProvider } from "@/hooks/useAuth";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function RootLayout({
@@ -11,7 +12,13 @@ export default function RootLayout({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>{children}</AuthProvider>
+      <AuthProvider>
+        <GoogleOAuthProvider
+          clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}
+        >
+          {children}
+        </GoogleOAuthProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

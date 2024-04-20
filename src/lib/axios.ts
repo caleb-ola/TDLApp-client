@@ -3,18 +3,21 @@ import axios from "axios";
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASEURL_LOCAL,
 });
-console.log({ url: process.env.NEXT_PUBLIC_BASEURL_LOCAL });
+// console.log({ url: process.env.NEXT_PUBLIC_BASEURL_LOCAL });
 let token: string | null;
 if (typeof window !== "undefined") {
   token = localStorage.getItem("tdlatoken");
 }
 
+// console.log({ token });
 axiosInstance.interceptors.request.use(
   (config: any) => {
-    const accessToken = token && JSON.parse(token);
+    const accessToken = token;
 
     if (accessToken) {
       if (config.headers) config.headers.token = accessToken;
+      config.headers.authorization = `Bearer ${accessToken}`;
+      axiosInstance.defaults.headers.common.authorization = `Bearer ${token}`;
     }
     return config;
   },
