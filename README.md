@@ -18,17 +18,17 @@ TDLApp is a task management application designed to help you stay organized, foc
 
 To get started with TDLApp, follow these simple steps:
 
-1. **Clone the Repository**: Clone the TDLApp repository to your local machine.
+1. **Clone the Repository**: Clone the TDLApp repository to your local machine.<br>
    git clone https://github.com/your-username/tdlapp.git
 
-2. **Install Dependencies**: Navigate to the project directory and install dependencies.
+2. **Install Dependencies**: Navigate to the project directory and install dependencies.<br>
    cd tdlapp
    npm install
 
-3. **Set Up Environment Variables**: Set up environment variables required for configuration.
+3. **Set Up Environment Variables**: Set up environment variables required for configuration.<br>
    cp .env.example .env.local
 
-4. **Run the Application**: Start the TDLApp server locally.
+4. **Run the Application**: Start the TDLApp server locally.<br>
    npm run dev
 
 5. **Access TDLApp**: Open your web browser and navigate to `http://localhost:3000` to access TDLApp.
