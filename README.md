@@ -31,7 +31,7 @@ To get started with TDLApp, follow these simple steps:
 4. **Run the Application**: Start the TDLApp server locally.<br>
    npm run dev
 
-5. **Access TDLApp**: Open your web browser and navigate to `http://localhost:3000` to access TDLApp.
+5. **Access TDLApp**: Open your web browser and navigate to `http://localhost:3000` to access TDLApp.<br>
 
 ## Contributing
 
