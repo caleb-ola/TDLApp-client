@@ -8,11 +8,16 @@ import TextInput from "@/components/forms/textInput";
 import PasswordInput from "@/components/forms/passwordInput";
 import LoadingBlueButton from "@/components/buttons/loadingBlueButton";
 import { useResetPassword } from "@/hooks/useAuthRequest";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { toastErrorFn, toastSuccessFn } from "@/utils/toast.utils";
+import { setLocalStorage } from "@/utils/localStorage.utils";
+import { useAuth } from "@/hooks/useAuth";
 
 const ResetPassword = () => {
+  const { setUser } = useAuth();
   const { register, handleSubmit } = useForm();
   const { token } = useParams<{ token: string }>();
+  const router = useRouter();
 
   const {
     mutate,
@@ -23,9 +28,24 @@ const ResetPassword = () => {
   } = useResetPassword();
 
   const onSubmit = (data: any) => {
-    console.log({ data, token });
+    // console.log({ data, token });
     mutate({ data, token });
   };
+
+  if (isError) {
+    toastErrorFn(`${(error as any)?.response?.data?.message}`, {
+      toastId: "reset-error-1",
+    });
+  }
+
+  if (result) {
+    const responseData = (result as any)?.data;
+    setLocalStorage(responseData);
+    setUser(responseData?.data?.data);
+    // router.push("/dashboard");
+  }
+
+  console.log({ result, isLoading, isError });
 
   return (
     <>

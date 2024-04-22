@@ -1,13 +1,16 @@
 "use client";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
+import { useAuth } from "@/hooks/useAuth";
 import { useVerifyEmail } from "@/hooks/useAuthRequest";
 import { verifyEmailData } from "@/lib/authRequests";
+import { setLocalStorage } from "@/utils/localStorage.utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { FC, useEffect } from "react";
 
 const EmailVerification: FC<any> = () => {
+  const { setUser } = useAuth();
   const router = useRouter();
   const {
     mutate,
@@ -22,8 +25,9 @@ const EmailVerification: FC<any> = () => {
   // console.log({ isLoading, error, isError, verifyRes });
 
   if (verifyRes) {
-    localStorage.setItem("tdlatoken", verifyRes?.data.token);
-    router.push("/dashboard");
+    const responseData = (verifyRes as any)?.data;
+    setLocalStorage(responseData);
+    setUser(responseData?.data?.data);
   }
 
   useEffect(() => {

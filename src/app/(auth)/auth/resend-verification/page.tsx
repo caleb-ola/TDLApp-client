@@ -20,11 +20,11 @@ const ForgotPassword = () => {
   } = useResendVerify();
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    // console.log(data);
     mutate(data);
   };
 
-  console.log({ resendRes, isLoading, isError, error });
+  // console.log({ resendRes, isLoading, isError, error });
   if (resendRes) {
     toastSuccessFn(`${resendRes?.data?.data?.message}`, {
       toastId: "resend-email-success-1",
@@ -66,7 +66,7 @@ const ForgotPassword = () => {
                     register={register}
                   />
                   {/* <!-- End Form Group --> */}
-                  <div className="my-2">
+                  <div className="mt-3">
                     {isLoading ? (
                       <LoadingBlueButton />
                     ) : (
