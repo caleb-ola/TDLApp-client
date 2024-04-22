@@ -20,6 +20,14 @@ export interface resendVerifyData {
   email: string;
 }
 
+export interface ForgotPasswordData {
+  email: string;
+}
+export interface ResetPasswordData {
+  password: string;
+  confirmPassword: string;
+}
+
 export const loginUser = async (data: LoginData) => {
   return await axios.post("", data);
 };
@@ -34,4 +42,15 @@ export const verifyEmailReq = (data: verifyEmailData) => {
 
 export const resendVerifyReq = (data: resendVerifyData) => {
   return axiosInstance.post("/auth/resend-verification-email", data);
+};
+
+export const forgotPassword = (data: ForgotPasswordData) => {
+  return axiosInstance.post("/auth/forgot-password", data);
+};
+
+export const resetPassword = (data: {
+  token: string;
+  data: ResetPasswordData;
+}) => {
+  return axiosInstance.post(`/auth/reset-password/${data.token}`, data.data);
 };

@@ -1,5 +1,6 @@
 import {
   resendVerifyReq,
+  resetPassword,
   signUpUserReq,
   verifyEmailReq,
 } from "@/lib/authRequests";
@@ -31,8 +32,12 @@ export const useVerifyEmail = () => {
   return useMutation(verifyEmailReq);
 };
 
-export const useResendVerify: any = () => {
+export const useResendVerify = () => {
   return useMutation(resendVerifyReq);
+};
+
+export const useResetPassword = () => {
+  return useMutation(resetPassword);
 };
 
 export const getCurrentUser: any = () => {

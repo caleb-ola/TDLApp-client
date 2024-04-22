@@ -19,7 +19,7 @@ const EmailVerification: FC<any> = () => {
 
   const { token } = useParams<{ token: string }>();
   // console.log(token);
-  console.log({ isLoading, error, isError, verifyRes });
+  // console.log({ isLoading, error, isError, verifyRes });
 
   if (verifyRes) {
     localStorage.setItem("tdlatoken", verifyRes?.data.token);

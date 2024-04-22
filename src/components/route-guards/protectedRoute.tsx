@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React, { FC, useEffect } from "react";
 
 const ProtectedRoute: FC<any> = ({ children }) => {
@@ -9,18 +9,18 @@ const ProtectedRoute: FC<any> = ({ children }) => {
   // console.log(user);
 
   useEffect(() => {
-    if (
-      !localStorage.getItem("tdlatoken") ||
-      !localStorage.getItem("tdlauser")
-    ) {
+    if (!user) {
       router.push("/auth/login");
     }
-  }, []);
-  if (user) {
-    return <>{children}</>;
-  } else {
-    return <></>;
-  }
+  }, [user]);
+
+  return user ? <>{children}</> : null;
+
+  // if (user) {
+  //   return <>{children}</>;
+  // } else {
+  //   return <></>;
+  // }
 };
 
 export default ProtectedRoute;

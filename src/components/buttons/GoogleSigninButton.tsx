@@ -1,15 +1,48 @@
 "use client";
+import { useAuth } from "@/hooks/useAuth";
+import googleAuth from "@/lib/googleAuth";
+import { setLocalStorage } from "@/utils/localStorage.utils";
+import { toastErrorFn } from "@/utils/toast.utils";
 import { useGoogleLogin } from "@react-oauth/google";
+import { AxiosError } from "axios";
+import { redirect, useRouter } from "next/navigation";
 import React, { FC } from "react";
 
 const GoogleSigninButton: FC<any> = () => {
+  const router = useRouter();
+  const { login, logout, setUser } = useAuth();
+
   const responseGoogle = async (credResult: any) => {
     try {
-      if (credResult) {
-        console.log(credResult);
+      if (credResult?.code) {
+        // console.log(credResult);
+        const result = await googleAuth(credResult?.code);
+        // console.log({ result });
+        const responseData = result?.data;
+        if (responseData?.status === "success") {
+          setLocalStorage(responseData);
+          // setUser(responseData.data.data);
+          // redirect("/dashboard");
+          //   redirect("/dashboard");
+          setUser(responseData.data.data);
+        }
+      } else {
+        // console.log({ credResult });
+        toastErrorFn("Something went wrong. Please try again.", {
+          toastId: "google-login-error-1",
+        });
       }
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      console.log({ err });
+      toastErrorFn(
+        `${
+          err?.response?.data?.message ||
+          "Something went wrong, please try again."
+        }`,
+        {
+          toastId: "google-login-error-2",
+        }
+      );
     }
   };
 

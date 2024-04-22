@@ -5,6 +5,7 @@ import PasswordInput from "@/components/forms/passwordInput";
 import TextInput from "@/components/forms/textInput";
 import AuthProtectedRoute from "@/components/route-guards/authProtectedRoute";
 import { useAuth } from "@/hooks/useAuth";
+import { setLocalStorage } from "@/utils/localStorage.utils";
 import { toastErrorFn } from "@/utils/toast.utils";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -43,10 +44,7 @@ const Page = () => {
 
   if (loginResponse) {
     const responseData = (loginResponse as any)?.data;
-    localStorage.setItem("tdlatoken", responseData.token);
-    localStorage.setItem("tdlauser", JSON.stringify(responseData.data.data));
-    // setUser(responseData.data.data);
-    // redirect("/dashboard");
+    setLocalStorage(responseData);
     router.push("/dashboard");
   }
 
