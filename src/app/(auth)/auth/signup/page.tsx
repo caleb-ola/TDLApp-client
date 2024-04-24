@@ -73,9 +73,9 @@ const Signup = () => {
                 <div className="grid gap-y-4">
                   <TextInput
                     label={"Username"}
-                    id={"name"}
+                    id={"username"}
                     type={"text"}
-                    name={"name"}
+                    name={"username"}
                     error={"Please include a valid username"}
                     placeholder={"john_doe"}
                     register={register}
