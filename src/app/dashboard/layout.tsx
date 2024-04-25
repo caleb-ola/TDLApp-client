@@ -7,6 +7,8 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/hooks/useAuth";
 import ProtectedRoute from "@/components/route-guards/protectedRoute";
+import DashHeader from "@/components/dashboard/DashHeader";
+import Sidebar from "@/components/dashboard/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +26,11 @@ export default function RootLayout({
     // <ProtectedRoute>
     <html lang="en">
       <body className={inter.className}>
-        <ProtectedRoute>{children}</ProtectedRoute>
+        <ProtectedRoute>
+          <DashHeader />
+          <Sidebar />
+          {children}
+        </ProtectedRoute>
       </body>
       <PrelineScript />
     </html>

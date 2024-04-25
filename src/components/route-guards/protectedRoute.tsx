@@ -9,7 +9,7 @@ const ProtectedRoute: FC<any> = ({ children }) => {
   // console.log(user);
 
   useEffect(() => {
-    if (!user) {
+    if (!localStorage.tdlauser || !localStorage.tdlatoken) {
       router.push("/auth/login");
     }
   }, [user]);
